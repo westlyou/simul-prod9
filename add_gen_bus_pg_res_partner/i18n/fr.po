@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* add_gen_bus_pg_res_partner
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-05 21:52+0000\n"
+"PO-Revision-Date: 2022-04-05 21:52+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: add_gen_bus_pg_res_partner
+#: model:ir.model.fields,field_description:add_gen_bus_pg_res_partner.field_res_partner__c_gen_bus_pg
+#: model:ir.model.fields,field_description:add_gen_bus_pg_res_partner.field_res_users__c_gen_bus_pg
+msgid "C Gen Bus Posting Group"
+msgstr "C Groupe Compta. Marché"
+
+#. module: add_gen_bus_pg_res_partner
+#: model:ir.model,name:add_gen_bus_pg_res_partner.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: add_gen_bus_pg_res_partner
+#: model:ir.model.fields,field_description:add_gen_bus_pg_res_partner.field_res_partner__gen_bus_pg
+#: model:ir.model.fields,field_description:add_gen_bus_pg_res_partner.field_res_users__gen_bus_pg
+msgid "Gen Bus Posting Group"
+msgstr "Groupe Compta Marché"
+
+#. module: add_gen_bus_pg_res_partner
+#: model:ir.model.fields,field_description:add_gen_bus_pg_res_partner.field_res_partner__s_gen_bus_pg
+#: model:ir.model.fields,field_description:add_gen_bus_pg_res_partner.field_res_users__s_gen_bus_pg
+msgid "S Gen Bus Posting Group"
+msgstr "S Groupe Compta. Marché"

@@ -1,0 +1,27 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* add_no_g_field_in_res_partner
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-24 18:40+0000\n"
+"PO-Revision-Date: 2022-03-24 18:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: add_no_g_field_in_res_partner
+#: model:ir.model.fields,field_description:add_no_g_field_in_res_partner.field_res_partner__no_g
+#: model:ir.model.fields,field_description:add_no_g_field_in_res_partner.field_res_users__no_g
+msgid "Account Number"
+msgstr "Numéro de compte"
+
+#. module: add_no_g_field_in_res_partner
+#: model:ir.model,name:add_no_g_field_in_res_partner.model_res_partner
+msgid "Contact"
+msgstr ""

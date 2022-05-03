@@ -1,0 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* invoice_origin_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-29 10:38+0000\n"
+"PO-Revision-Date: 2022-04-29 10:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: invoice_origin_type
+#: model:ir.model,name:invoice_origin_type.model_account_move
+msgid "Journal Entry"
+msgstr "Pièce comptable"
+
+#. module: invoice_origin_type
+#: model:ir.model.fields,field_description:invoice_origin_type.field_account_bank_statement_line__origin_type
+#: model:ir.model.fields,field_description:invoice_origin_type.field_account_move__origin_type
+#: model:ir.model.fields,field_description:invoice_origin_type.field_account_payment__origin_type
+msgid "Order Origin Type"
+msgstr "Type de commande d'origine"
+
+#. module: invoice_origin_type
+#: code:addons/invoice_origin_type/models/account.py:0
+#, python-format
+msgid "Order Reference %s not found!"
+msgstr "Référence de commande %s introuvable!"
+
+#. module: invoice_origin_type
+#: code:addons/invoice_origin_type/models/account.py:0
+#, python-format
+msgid ""
+"The selected invoice origine type does not match with the order type\n"
+"Selected invoice origine type : %s\n"
+"Order (%s) with reference %s type : %s"
+msgstr ""
+"Le type d'origine de facture selectionné ne correspond pas avec le type de commande\n"
+"Type d'origine de facture selectionné : %s\n"
+"Type de commande (%s) avec référence %s : %s"
+
+#. module: invoice_origin_type
+#: model:ir.model.fields.selection,name:invoice_origin_type.selection__account_move__origin_type__amadeus
+msgid "Ticketing"
+msgstr "Billeterie"
+
+#. module: invoice_origin_type
+#: model:ir.model.fields.selection,name:invoice_origin_type.selection__account_move__origin_type__to
+msgid "Tour Operator"
+msgstr ""

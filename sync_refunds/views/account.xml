@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="customize_account_move_reversal_form_view" model="ir.ui.view">
+			<field name="name">account.move.reversal.customize.form.inherited</field>
+			<field name="model">account.move.reversal</field>
+			<field name="inherit_id" ref="account.view_account_move_reversal"/>
+			<field name="arch" type="xml">
+				<xpath expr="//form/group[2]/group[1]/field[@name='reason']" position="attributes">
+					<attribute name="required">1</attribute>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

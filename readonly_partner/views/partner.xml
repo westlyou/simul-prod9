@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="disable_partner_create_edit" model="ir.ui.view">
+			<field name="name">readonly.partner.form.inherited</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//form" position="attributes">
+					<attribute name="create">false</attribute>
+					<attribute name="edit">false</attribute>
+				</xpath>
+			</field>
+		</record>
+
+		<record id="tree_view_disable_multi_edit_and_remove_create_button" model="ir.ui.view">
+			<field name="name">no_multi_edit.no_creation.partner.tree.inherited</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_tree"/>
+			<field name="arch" type="xml">
+				<xpath expr="//tree" position="attributes">
+					<attribute name="multi_edit">0</attribute>
+					<attribute name="create">false</attribute>
+				</xpath>
+			</field>
+		</record>
+
+		<record id="kanban_disable_partner_create" model="ir.ui.view">
+			<field name="name">no_create.partner.kanban.inherited</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.res_partner_kanban_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//kanban" position="attributes">
+					<attribute name="create">false</attribute>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<!-- Form to select the partners -->
+		<record id="state_extraction_form" model="ir.ui.view">
+			<field name="name">State Extraction</field>
+			<field name="model">account.extractions.wizard</field>
+			<field name="arch" type="xml">
+				<form string="State Extraction">
+					<group>
+						<group>
+							<field name="origin_type"/>
+							<field name="partner_ids" required="1" widget="many2many_tags" options="{'no_create' : True}"/>
+						</group>
+						<group>
+							<field name="start_date"/>
+							<field name="end_date"/>
+						</group>
+					</group>
+					<footer>
+						<!-- a button to start the download process -->
+						<button name="get_excel_report" string="Export (XLSX)" type="object" class="btn-primary"/>
+						<button string="Cancel" class="btn" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+		
+		<!-- Form to select start date, and end date -->
+		<record id="saleslog_extraction_form" model="ir.ui.view">
+			<field name="name">Sales Log</field>
+			<field name="model">account.extractions.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Sales Log">
+					<group>
+						<group>
+							<field name="origin_type"/>
+						</group>
+						<group>
+							<field name="start_date" required="1"/>
+							<field name="end_date" required="1"/>
+						</group>
+					</group>
+					<footer>
+						<!-- a button to start the download process -->
+						<button name="print_sales_log" string="Print Sales Log" type="object" class="btn-primary"/>
+						<button string="Cancel" class="btn-default" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<!-- The action to open the form above -->
+		<record model="ir.actions.act_window" id="action_open_state_extraction_wizard_form">
+			<field name="name">State Extraction</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.extractions.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="context">{'default_extraction_type' : 'state'}</field>
+			<field name="view_id" ref="state_extraction_form"/>
+			<field name="target">new</field>
+		</record>
+
+		<!-- The action to open the form above -->
+		<record model="ir.actions.act_window" id="action_open_saleslog_extraction_wizard_form">
+			<field name="name">Sales Log Extraction</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.extractions.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="context">{'default_extraction_type' : 'saleslog'}</field>
+			<field name="view_id" ref="saleslog_extraction_form"/>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem name="Extractions" id="menu_extractions" parent="travel_agency.main_menu"/>
+
+		<menuitem name="State"
+			id="menu_state_extraction"
+			parent="menu_extractions"
+			action="action_open_state_extraction_wizard_form"/>
+
+		<menuitem name="Sales Log"
+			id="menu_sale_log"
+			parent="menu_extractions"
+			action="action_open_saleslog_extraction_wizard_form"/>
+	</data>
+</odoo>

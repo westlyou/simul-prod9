@@ -1,0 +1,72 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sync_refunds
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-13 07:00+0000\n"
+"PO-Revision-Date: 2022-04-13 07:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sync_refunds
+#: model:ir.model,name:sync_refunds.model_account_move_reversal
+msgid "Account Move Reversal"
+msgstr "Renversement de la pièce comptable"
+
+#. module: sync_refunds
+#: model:ir.model.fields,help:sync_refunds.field_account_move_reversal__refund_method
+msgid ""
+"Choose how you want to credit this invoice. You cannot \"modify\" nor "
+"\"cancel\" if the invoice is already reconciled."
+msgstr ""
+"Choisissez comment vous souhaitez créditer cette facture. Vous ne pouvez pas"
+" \"modifier\" ou \"annuler\" si la facture est déjà rapprochée."
+
+#. module: sync_refunds
+#: model:ir.model.fields,field_description:sync_refunds.field_account_move_reversal__refund_method
+msgid "Credit Method"
+msgstr "Méthode de Crédit"
+
+#. module: sync_refunds
+#: model:ir.model.fields.selection,name:sync_refunds.selection__account_move_reversal__refund_method__cancel
+msgid "Full Refund"
+msgstr "Avoir intégral"
+
+#. module: sync_refunds
+#: model:ir.model.fields.selection,name:sync_refunds.selection__account_move_reversal__refund_method__modify
+msgid "Full refund and new draft invoice"
+msgstr "Avoir intégral et nouvelle facture brouillon"
+
+#. module: sync_refunds
+#: model:ir.model,name:sync_refunds.model_account_move
+msgid "Journal Entry"
+msgstr "Pièce comptable"
+
+#. module: sync_refunds
+#: model:ir.model,name:sync_refunds.model_account_move_line
+msgid "Journal Item"
+msgstr "Écriture comptable"
+
+#. module: sync_refunds
+#: model:ir.model.fields.selection,name:sync_refunds.selection__account_move_reversal__refund_method__refund
+msgid "Partial Refund"
+msgstr "Avoir partiel"
+
+#. module: sync_refunds
+#: model:ir.model.fields,field_description:sync_refunds.field_account_move_line__related_in_refund
+msgid "Related In Refund"
+msgstr "Avoir fournisseur correspondant"
+
+#. module: sync_refunds
+#: model:ir.model.fields,field_description:sync_refunds.field_account_bank_statement_line__related_out_refund
+#: model:ir.model.fields,field_description:sync_refunds.field_account_move__related_out_refund
+#: model:ir.model.fields,field_description:sync_refunds.field_account_payment__related_out_refund
+msgid "Related Out Refund"
+msgstr "Avoir client correspondant"

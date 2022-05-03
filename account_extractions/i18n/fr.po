@@ -1,0 +1,314 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_extractions
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-21 14:17+0000\n"
+"PO-Revision-Date: 2022-03-21 14:17+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_extractions
+#: model:ir.actions.report,print_report_name:account_extractions.action_print_sales_log
+msgid "\"Sales Log - %s\" % (object.name)"
+msgstr "\"Journal de Ventes - %s\" % (object.name)"
+
+#. module: account_extractions
+#: model:ir.model,name:account_extractions.model_account_extractions_wizard
+msgid "Account Extractions"
+msgstr "Extractions de compte"
+
+#. module: account_extractions
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+msgid "Agent"
+msgstr ""
+
+#. module: account_extractions
+#: model:ir.model.fields.selection,name:account_extractions.selection__account_extractions_wizard__origin_type__amadeus
+msgid "Billeterie"
+msgstr ""
+
+#. module: account_extractions
+#: model_terms:ir.ui.view,arch_db:account_extractions.saleslog_extraction_form
+#: model_terms:ir.ui.view,arch_db:account_extractions.state_extraction_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: account_extractions
+#: model:ir.model.fields,field_description:account_extractions.field_account_extractions_wizard__partner_ids
+msgid "Companies"
+msgstr "Compagnies"
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/account_extractions.py:0
+#, python-format
+msgid "Company"
+msgstr "Compagnie"
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/backup_saleslog.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog_per_date.py:0
+#, python-format
+msgid "Company Code"
+msgstr "Code Compagnie"
+
+#. module: account_extractions
+#: model:ir.model.fields,field_description:account_extractions.field_account_extractions_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: account_extractions
+#: model:ir.model.fields,field_description:account_extractions.field_account_extractions_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/account_extractions.py:0
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+#, python-format
+msgid "Date"
+msgstr ""
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/account_extractions.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog_per_date.py:0
+#, python-format
+msgid "Description"
+msgstr ""
+
+#. module: account_extractions
+#: model:ir.model.fields,field_description:account_extractions.field_account_extractions_wizard__display_name
+msgid "Display Name"
+msgstr "Nom Affiché"
+
+#. module: account_extractions
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+msgid "EDITED ON"
+msgstr "ÉDITÉ LE"
+
+#. module: account_extractions
+#: model:ir.model.fields,field_description:account_extractions.field_account_extractions_wizard__end_date
+msgid "End Date"
+msgstr "Date de Fin"
+
+#. module: account_extractions
+#: model_terms:ir.ui.view,arch_db:account_extractions.state_extraction_form
+msgid "Export (XLSX)"
+msgstr "Exporter (XLSX)"
+
+#. module: account_extractions
+#: model:ir.ui.menu,name:account_extractions.menu_extractions
+msgid "Extractions"
+msgstr ""
+
+#. module: account_extractions
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+msgid "FROM"
+msgstr "DU"
+
+#. module: account_extractions
+#: model:ir.model.fields,field_description:account_extractions.field_account_extractions_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/backup_saleslog.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog_per_date.py:0
+#, python-format
+msgid "Invoice / Refund Date"
+msgstr "Date de Facture / Avoir"
+
+#. module: account_extractions
+#: model:ir.model,name:account_extractions.model_account_move
+msgid "Journal Entry"
+msgstr "Pièce comptable"
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/account_extractions.py:0
+#, python-format
+msgid "Journey"
+msgstr "Trajet"
+
+#. module: account_extractions
+#: model:ir.model.fields,field_description:account_extractions.field_account_extractions_wizard____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: account_extractions
+#: model:ir.model.fields,field_description:account_extractions.field_account_extractions_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: account_extractions
+#: model:ir.model.fields,field_description:account_extractions.field_account_extractions_wizard__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/backup_saleslog_per_date.py:0
+#, python-format
+msgid "M.G.B.I Sales Log of %s"
+msgstr ""
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/account_extractions.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog_per_date.py:0
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+#, python-format
+msgid "Number"
+msgstr "Numéro"
+
+#. module: account_extractions
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+msgid "OF"
+msgstr "DU"
+
+#. module: account_extractions
+#: model:ir.model.fields,field_description:account_extractions.field_account_extractions_wizard__origin_type
+msgid "Origin Type"
+msgstr "Type d'origine"
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/account_extractions.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog_per_date.py:0
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+#, python-format
+msgid "Other Tax"
+msgstr "Autre Taxe"
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/backup_saleslog.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog_per_date.py:0
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+#, python-format
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/account_extractions.py:0
+#, python-format
+msgid "Passenger"
+msgstr "Passager"
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/backup_saleslog.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog_per_date.py:0
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+#, python-format
+msgid "Price Unit"
+msgstr "Prix Unitaire"
+
+#. module: account_extractions
+#: model_terms:ir.ui.view,arch_db:account_extractions.saleslog_extraction_form
+msgid "Print Sales Log"
+msgstr "Imprimer le Journal de Ventes"
+
+#. module: account_extractions
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+msgid "S.I.G.M SALES LOG"
+msgstr "S.I.G.M JOURNAL DE VENTES"
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/account_extractions.py:0
+#, python-format
+msgid "S.I.G.M. State (%s)"
+msgstr "S.I.G.M. État (%s)"
+
+#. module: account_extractions
+#: model:ir.actions.report,name:account_extractions.action_print_sales_log
+#: model:ir.ui.menu,name:account_extractions.menu_sale_log
+#: model_terms:ir.ui.view,arch_db:account_extractions.saleslog_extraction_form
+msgid "Sales Log"
+msgstr "Journal de Ventes"
+
+#. module: account_extractions
+#: model:ir.actions.act_window,name:account_extractions.action_open_saleslog_extraction_wizard_form
+msgid "Sales Log Extraction"
+msgstr "Extraction du Journal de Ventes"
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/backup_saleslog.py:0
+#, python-format
+msgid "Sales Log Report"
+msgstr "Rapport du Journal de ventes"
+
+#. module: account_extractions
+#: model:ir.model.fields,field_description:account_extractions.field_account_extractions_wizard__start_date
+msgid "Start Date"
+msgstr "Date de Début"
+
+#. module: account_extractions
+#: model:ir.ui.menu,name:account_extractions.menu_state_extraction
+msgid "State"
+msgstr "État"
+
+#. module: account_extractions
+#: model:ir.actions.act_window,name:account_extractions.action_open_state_extraction_wizard_form
+#: model_terms:ir.ui.view,arch_db:account_extractions.state_extraction_form
+msgid "State Extraction"
+msgstr "Extraction État"
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/account_extractions.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog_per_date.py:0
+#, python-format
+msgid "State.xlsx"
+msgstr "État.xlsx"
+
+#. module: account_extractions
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+msgid "TO"
+msgstr "AU"
+
+#. module: account_extractions
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+msgid "TOTAL"
+msgstr ""
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/account_extractions.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog_per_date.py:0
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+#, python-format
+msgid "Ticket Number"
+msgstr "Numéro de Billet"
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/account_extractions.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog_per_date.py:0
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+#, python-format
+msgid "Total"
+msgstr ""
+
+#. module: account_extractions
+#: model:ir.model.fields.selection,name:account_extractions.selection__account_extractions_wizard__origin_type__to
+msgid "Tour Operator"
+msgstr ""
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/account_extractions.py:0
+#, python-format
+msgid "Transport"
+msgstr ""
+
+#. module: account_extractions
+#: code:addons/account_extractions/controllers/account_extractions.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog.py:0
+#: code:addons/account_extractions/controllers/backup_saleslog_per_date.py:0
+#: model_terms:ir.ui.view,arch_db:account_extractions.print_sales_log
+#, python-format
+msgid "VAT"
+msgstr "TVA"

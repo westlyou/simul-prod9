@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="form_insert_passing_customer_fields" model="ir.ui.view">
+			<field name="name">account.move.passing_customer_fields.form.inherited</field>
+			<field name="model">account.move</field>
+			<field name="inherit_id" ref="account.view_move_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='partner_id']" position="after">
+					<field name="customer_type" invisible="1"/>
+					<field name="customer_name" attrs="{'invisible' : [('customer_type', '!=', 'passing')]}"/> 
+					<field name="customer_address" attrs="{'invisible' : [('customer_type', '!=', 'passing')]}"/> 
+				</xpath>
+			</field>
+		</record>
+
+		<record id="tree_insert_passing_customer_fields" model="ir.ui.view">
+			<field name="name">account.move.passing_customer_fields.tree.inherited</field>
+			<field name="model">account.move</field>
+			<field name="inherit_id" ref="account.view_invoice_tree"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='invoice_date'][1]" position="before">
+					<field name="customer_name"/> 
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

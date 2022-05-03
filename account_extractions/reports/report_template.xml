@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="print_sales_log" name="Sales Log Report Template">
+            <t t-call="web.html_container">
+                <div class="page">
+                    <t t-call="web.external_layout">
+                        <t t-set="oldest_date" t-value="min([doc.invoice_date for doc in docs])"/>
+                        <t t-set="oldest_date" t-value="context_timestamp(datetime.datetime.combine(oldest_date, datetime.datetime.min.time())).strftime('%d/%m/%Y')"/>
+                        <t t-set="youngest_date" t-value="max([doc.invoice_date for doc in docs])"/>
+                        <t t-set="youngest_date" t-value="context_timestamp(datetime.datetime.combine(youngest_date, datetime.datetime.min.time())).strftime('%d/%m/%Y')"/>
+                        <t t-set="current_date" t-value="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                        <div class="text-center font-weight-bold">
+                            S.I.G.M SALES LOG 
+                            <!-- <span t-esc="('OF %s' % dt.strftime(oldest_date, '%d/%m/%Y')) if oldest_date == youngest_date else ('FROM %s TO %s' % (dt.strftime(oldest_date, '%d/%m/%Y'), dt.strftime(youngest_date, '%d/%m/%Y')))"/> -->
+                            <t t-if="oldest_date == youngest_date">
+                                OF <span t-esc="oldest_date"/>
+                            </t>
+                            <t t-else="">
+                                FROM <span t-esc="oldest_date"/> TO <span t-esc="youngest_date"/>
+                            </t>
+                            EDITED ON <span t-esc="current_date"/>
+                        </div>
+                        <table class="table table-sm" style="font-size: 75%;">
+                            <thead>
+                                <tr>
+                                    <th>Number</th>
+                                    <th>Date</th>
+                                    <th>Partner</th>
+                                    <th>Ticket Number</th>
+                                    <th>Price Unit</th>
+                                    <th>Other Tax</th>
+                                    <th>VAT</th>
+                                    <th>Total</th>
+                                    <th>Agent</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="sum_price_unit" t-value="0"/>
+                                <t t-set="sum_other_tax" t-value="0"/>
+                                <t t-set="sum_amount_tva" t-value="0"/>
+                                <t t-set="sum_price_total" t-value="0"/>
+                                <t t-foreach="docs" t-as="doc">
+                                    <t t-set="origin_order" t-value="doc.origin_order()"/>
+                                    <t t-foreach="doc.invoice_line_ids" t-as="line">
+                                        <tr>
+                                            <td><span t-field="doc.name"/></td>
+                                            <td><span t-field="doc.invoice_date"/></td>
+                                            <td>
+                                                <t t-if="doc.customer_type == 'passing' and doc.customer_name">
+                                                    <span t-field="doc.customer_name"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span t-field="doc.partner_id.name"/>
+                                                </t>
+                                            </td>
+                                            <td><span t-field="line.ticket_number"/></td>
+
+                                            <t t-set="force_sign" t-value="-1 if 'refund' in doc.move_type else 1"/>
+
+                                            <t t-set="price_unit" t-value="force_sign * line.price_unit"/>
+                                            <t t-set="sum_price_unit" t-value="sum_price_unit + price_unit"/>
+                                            <td><span t-esc="doc.display_amount(price_unit)"/></td>
+                                            <!-- <td><span t-field="line.price_unit"/></td> -->
+
+                                            <t t-set="other_tax" t-value="force_sign * line.other_tax"/>
+                                            <t t-set="sum_other_tax" t-value="sum_other_tax + other_tax"/>
+                                            <td><span t-esc="doc.display_amount(other_tax)"/></td>
+                                            <!-- <td><span t-field="line.other_tax"/></td> -->
+
+                                            <t t-set="amount_tva" t-value="force_sign * line.amount_tva"/>
+                                            <t t-set="sum_amount_tva" t-value="sum_amount_tva + amount_tva"/>
+                                            <td><span t-esc="doc.display_amount(amount_tva)"/></td>
+                                            <!-- <td><span t-field="line.amount_tva"/></td> -->
+
+                                            <t t-set="price_total" t-value="force_sign * line.price_total"/>
+                                            <t t-set="sum_price_total" t-value="sum_price_total + price_total"/>
+                                            <td><span t-esc="doc.display_amount(price_total)"/></td>
+                                            <!-- <td><span t-field="line.price_total"/></td> -->
+
+                                            <td>
+                                                <t t-if="origin_order and origin_order.followed_by">
+                                                    <span t-esc="origin_order.followed_by.name[:3].upper()"/>
+                                                </t>
+                                                <t t-else=""><span t-esc="''"/></t>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                                <tr>
+                                    <td colspan="4" class="text-center font-weight-bold bt-3">TOTAL</td>
+                                    <td><span t-esc="docs[0].display_amount(sum_price_unit)"/></td>
+                                    <td><span t-esc="docs[0].display_amount(sum_other_tax)"/></td>
+                                    <td><span t-esc="docs[0].display_amount(sum_amount_tva)"/></td>
+                                    <td><span t-esc="docs[0].display_amount(sum_price_total)"/></td>
+                                    <td><span></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
