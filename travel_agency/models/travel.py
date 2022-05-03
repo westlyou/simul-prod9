@@ -483,6 +483,7 @@ class TravelOrder(models.Model):
                             'date_order' : dt.strftime(dt.now().date(), '%Y-%m-%d'),
                             'travel_order_id' : self.id,
                             'origin_type' : self.document_type,
+                            'ref' : self.ref,
                             'order_line' : []
                         }
 
