@@ -111,6 +111,9 @@
                                     <!-- <span t-if="origin_order.x_studio_stat_du_client">STAT : </span><span t-esc="origin_order.x_studio_stat_du_client"/> -->
                                     <span t-if="origin_order.customer_stat">STAT : </span><span t-esc="origin_order.customer_stat"/>
                                 </div>
+                                <div>
+                                    <span t-if="origin_order.customer_cif">CIF N° </span><span t-esc="origin_order.customer_cif"/>
+                                </div>
                             </div>
                         </t>
                         <t t-else="">
