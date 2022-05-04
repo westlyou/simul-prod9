@@ -30,6 +30,7 @@ class TravelOrder(models.Model):
     customer_address = fields.Char(string="Customer address")
     customer_nif = fields.Char(string="Customer NIF")
     customer_stat = fields.Char(string="Customer STAT")
+    customer_cif = fields.Char(string="Customer CIF")
 
     user_id = fields.Many2one(
         'res.users', string='Person', index=True, tracking=2, default=lambda self: self.env.user,

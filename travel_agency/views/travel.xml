@@ -149,6 +149,7 @@
                             <field name="customer_address" attrs="{'readonly' : [('state', 'in', ('accepted', 'confirmed', 'enclosed', 'canceled'))], 'invisible' : [('customer_type', '!=', 'passing')]}"/>
                             <field name="customer_nif" attrs="{'readonly' : [('state', 'in', ('accepted', 'confirmed', 'enclosed', 'canceled'))], 'invisible' : [('customer_type', '!=', 'passing')]}"/>
                             <field name="customer_stat" attrs="{'readonly' : [('state', 'in', ('accepted', 'confirmed', 'enclosed', 'canceled'))], 'invisible' : [('customer_type', '!=', 'passing')]}"/>
+                            <field name="customer_cif" attrs="{'readonly' : [('state', 'in', ('accepted', 'confirmed', 'enclosed', 'canceled'))], 'invisible' : [('customer_type', '!=', 'passing')]}"/>
                             <field name="partner_shipping_id" invisible="True"/>
                             <!-- <field name="transmitter" attrs="{'invisible' : [('document_type', '=', 'to')]}"/> -->
                             <field name="transmit_date" attrs="{'invisible' : [('document_type', '!=', 'amadeus')], 'readonly' : [('state', 'in', ('accepted', 'confirmed', 'canceled'))]}"/>
