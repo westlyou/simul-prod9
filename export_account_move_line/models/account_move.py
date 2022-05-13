@@ -101,7 +101,7 @@ class AccountMoveLine(models.Model):
                             else:
                                 new_doc_elts.append(item)
 
-                        no_doc = "/".join(new_doc_elts)
+                        no_doc = "/".join(new_doc_elts) if len(new_doc_elts) == 3 else "%s/%s%s/%s" % (elt for elt in new_doc_elts)
 
                     origin_order = line.move_id.origin_order()
                     if no_doc not in line_count:
