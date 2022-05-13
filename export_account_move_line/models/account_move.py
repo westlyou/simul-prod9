@@ -92,6 +92,7 @@ class AccountMoveLine(models.Model):
 
                     no_doc = line.move_id.name
                     no_doc_elts = no_doc.split('/')
+                    raise UserError(str(no_doc_elts))
                     if len(no_doc_elts)>1:
                         if re.search('^20', no_doc_elts[1]):
                             no_doc.replace(no_doc_elts[1], no_doc_elts[1][2:])
