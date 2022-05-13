@@ -94,7 +94,7 @@ class AccountMoveLine(models.Model):
                     no_doc_elts = no_doc.split('/')
                     if len(no_doc_elts)>1:
                         if re.search('^20', no_doc_elts[1]):
-                            no_doc.replace(no_doc_elts, no_doc_elts[2:])
+                            no_doc.replace(no_doc_elts[1], no_doc_elts[1][2:])
 
                     origin_order = line.move_id.origin_order()
                     if no_doc not in line_count:
