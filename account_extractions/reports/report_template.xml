@@ -26,6 +26,7 @@
                                 <tr>
                                     <th>Number</th>
                                     <th>Date</th>
+                                    <th>No. G</th>
                                     <th>Partner</th>
                                     <th>Ticket Number</th>
                                     <th>Price Unit</th>
@@ -46,6 +47,7 @@
                                         <tr>
                                             <td><span t-field="doc.name"/></td>
                                             <td><span t-field="doc.invoice_date"/></td>
+                                            <td><span t-field="doc.partner_id.no_g"/></td>
                                             <td>
                                                 <t t-if="doc.customer_type == 'passing' and doc.customer_name">
                                                     <span t-field="doc.customer_name"/>

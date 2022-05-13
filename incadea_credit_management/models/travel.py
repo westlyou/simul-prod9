@@ -82,151 +82,150 @@ class ResPartner(models.Model):
             record.general_credit = sum([quote.amount_total for quote in unpaid_quotes]) + record.incadea_credit
 
     def get_credit_infos(self):
-        ...
-        # __dir__ = os.path.dirname(__file__)
+        __dir__ = os.path.dirname(__file__)
 
-        # static_folder_path = os.path.join(os.path.dirname(__dir__), "static")
-        # _KEY_ = b'_Eb-ez6gdiB8bU89Y8cwl9LlGFC_0Mbv1CbLS8qNVio='
+        static_folder_path = os.path.join(os.path.dirname(__dir__), "static")
+        _KEY_ = b'_Eb-ez6gdiB8bU89Y8cwl9LlGFC_0Mbv1CbLS8qNVio='
 
-        # with open(static_folder_path + "/config.json") as json_data_file:
-        #     _CONFIG_ = json.load(json_data_file)
+        with open(static_folder_path + "/config.json") as json_data_file:
+            _CONFIG_ = json.load(json_data_file)
 
-        # fernet = Fernet(_KEY_)
+        fernet = Fernet(_KEY_)
 
-        # ftp_host = _CONFIG_['ftp']['host']
-        # ftp_user = _CONFIG_['ftp']['username']
-        # ftp_pwd = fernet.decrypt(bytes(_CONFIG_['ftp']['password'], 'utf-8')).decode('utf-8')
-        # data_source_folder = _CONFIG_['data']['source']
-        # processed_data_folder = _CONFIG_['data']['processed']
-        # logfile_location = _CONFIG_['logfile']['location']
+        ftp_host = _CONFIG_['ftp']['host']
+        ftp_user = _CONFIG_['ftp']['username']
+        ftp_pwd = fernet.decrypt(bytes(_CONFIG_['ftp']['password'], 'utf-8')).decode('utf-8')
+        data_source_folder = _CONFIG_['data']['source']
+        processed_data_folder = _CONFIG_['data']['processed']
+        logfile_location = _CONFIG_['logfile']['location']
 
         
-        # # ------------------------------------------------------------------------------------
-        # # Connection to the ftp
-        # # ------------------------------------------------------------------------------------
-        # state, session = False, None
-        # logs = []
+        # ------------------------------------------------------------------------------------
+        # Connection to the ftp
+        # ------------------------------------------------------------------------------------
+        state, session = False, None
+        logs = []
 
-        # try:
-        #     session = ftplib.FTP(ftp_host, ftp_user, ftp_pwd)
-        #     state = True
-        # except Exception as e:
-        #     print("Error : Impossible to connect to the FTP server\n{}".format(e))
+        try:
+            session = ftplib.FTP(ftp_host, ftp_user, ftp_pwd)
+            state = True
+        except Exception as e:
+            print("Error : Impossible to connect to the FTP server\n{}".format(e))
 
-        # # ------------------------------------------------------------------------------------
-        # # Retrieving files from the FTP server
-        # # ------------------------------------------------------------------------------------
-        # if state:
-        #     session.cwd(data_source_folder)
+        # ------------------------------------------------------------------------------------
+        # Retrieving files from the FTP server
+        # ------------------------------------------------------------------------------------
+        if state:
+            session.cwd(data_source_folder)
 
-        #     contents = session.nlst()
+            contents = session.nlst()
 
-        #     if any(['CREDITLIMIT_D_INCADEA' in content for content in contents]):
-        #         # session.cwd(logfile_location)
-        #         # log_byte = BytesIO()
-        #         # session.retrbinary('RETR server.log', log_byte.write)
-        #         # log_byte.seek(0)
+            if any(['CREDITLIMIT_D_INCADEA' in content for content in contents]):
+                # session.cwd(logfile_location)
+                # log_byte = BytesIO()
+                # session.retrbinary('RETR server.log', log_byte.write)
+                # log_byte.seek(0)
 
-        #         # logs = [log_byte.read()]
-        #         logs = []
+                # logs = [log_byte.read()]
+                logs = []
 
-        #         logs.append(bytes("\
-        #             #####################################################################################################################################\n\
-        #             #                                                                                                                                   #\n\
-        #             #                                                      Import Credits from Incadea                                                  #\n\
-        #             #                                                                                                                                   #\n\
-        #             #####################################################################################################################################\n",
-        #         'utf-8'))
+                logs.append(bytes("\
+                    #####################################################################################################################################\n\
+                    #                                                                                                                                   #\n\
+                    #                                                      Import Credits from Incadea                                                  #\n\
+                    #                                                                                                                                   #\n\
+                    #####################################################################################################################################\n",
+                'utf-8'))
 
-        #         logs.append(bytes("%s: INFO successfully connected to the FTP server\n" % dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S'), 'utf-8'))
+                logs.append(bytes("%s: INFO successfully connected to the FTP server\n" % dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S'), 'utf-8'))
 
 
-        #         columns = ["no_g", "credit", "limit"]
+                columns = ["no_g", "credit", "limit"]
 
-        #         dfs = []
-        #         success_import = []
-        #         failure_import = {}
+                dfs = []
+                success_import = []
+                failure_import = {}
 
-        #         for content in contents:
-        #             if 'CREDITLIMIT_D_INCADEA' in content:
-        #                 byte = BytesIO()
-        #                 session.retrbinary('RETR ' + content, byte.write)
-        #                 byte.seek(0)
+                for content in contents:
+                    if 'CREDITLIMIT_D_INCADEA' in content:
+                        byte = BytesIO()
+                        session.retrbinary('RETR ' + content, byte.write)
+                        byte.seek(0)
 
-        #                 df = pd.read_csv(byte, dtype=str, encoding='latin1', sep=';', names=columns)
-        #                 if df.empty:
-        #                     session.rename(data_source_folder + "/" + content, processed_data_folder + "/" + content)
-        #                     logs.append(bytes("%s: WARNING Empy file: %s was successfully moved to %s\n" % (dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S'), content, processed_data_folder), 'utf-8'))
-        #                     continue
-        #                 df = df.fillna("")
-        #                 df["source"] = content
-        #                 dfs.append(df)
+                        df = pd.read_csv(byte, dtype=str, encoding='latin1', sep=';', names=columns)
+                        if df.empty:
+                            session.rename(data_source_folder + "/" + content, processed_data_folder + "/" + content)
+                            logs.append(bytes("%s: WARNING Empy file: %s was successfully moved to %s\n" % (dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S'), content, processed_data_folder), 'utf-8'))
+                            continue
+                        df = df.fillna("")
+                        df["source"] = content
+                        dfs.append(df)
 
-        #                 byte.close()
+                        byte.close()
 
-        #         if len(dfs):
-        #             credits_data = pd.concat(dfs)
+                if len(dfs):
+                    credits_data = pd.concat(dfs)
 
-        #             for index, row in credits_data.iterrows():
-        #                 no_g = row['no_g']
-        #                 record = self.search([('no_g', '=', no_g)])
+                    for index, row in credits_data.iterrows():
+                        no_g = row['no_g']
+                        record = self.search([('no_g', '=', no_g)])
 
-        #                 if len(record.ids) > 1:
-        #                     logs.append(bytes("%s: WARNING Aborting Import: Duplicate record found for Account N° %s (%s)\n" % (dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S'), no_g, ", ".join([item.name for item in record])), 'utf-8'))
-        #                     if row['source'] not in failure_import:
-        #                         failure_import[row['source']] = []
+                        if len(record.ids) > 1:
+                            logs.append(bytes("%s: WARNING Aborting Import: Duplicate record found for Account N° %s (%s)\n" % (dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S'), no_g, ", ".join([item.name for item in record])), 'utf-8'))
+                            if row['source'] not in failure_import:
+                                failure_import[row['source']] = []
 
-        #                     failure_import[row['source']].append({'no_g' : no_g, 'reason' : 'Duplicated'})
+                            failure_import[row['source']].append({'no_g' : no_g, 'reason' : 'Duplicated'})
 
-        #                     continue
+                            continue
 
-        #                 contact = {
-        #                     'credit_limit' : float(row['limit'].replace(' ', '').replace(',', '.')),
-        #                     'incadea_credit' : float(row['credit'].replace(' ', '').replace(',', '.')),
-        #                 }
+                        contact = {
+                            'credit_limit' : float(row['limit'].replace(' ', '').replace(',', '.')),
+                            'incadea_credit' : float(row['credit'].replace(' ', '').replace(',', '.')),
+                        }
                         
-        #                 if len(record.ids) == 1:
-        #                     # Check if there was any modification in the contact
-        #                     change = False
-        #                     updates = {}
-        #                     for key in contact:
-        #                         if contact[key] != record[key]:
-        #                             updates[key] = {'old' : record[key], 'new' : contact[key]}
-        #                             change = True
+                        if len(record.ids) == 1:
+                            # Check if there was any modification in the contact
+                            change = False
+                            updates = {}
+                            for key in contact:
+                                if contact[key] != record[key]:
+                                    updates[key] = {'old' : record[key], 'new' : contact[key]}
+                                    change = True
 
 
-        #                     # If so, update the contact, do nothing otherwise
-        #                     if change:
-        #                         record.write(contact)
-        #                         message_body = ""
-        #                         for key in updates:
-        #                             message_body += "%s: %s → %s<br/>" % (key, updates[key]['old'], updates[key]['new'])
-        #                         record.message_post(body=message_body)
-        #                         logs.append(bytes("%s: INFO Customer N° %s Credit Infos successfully updated (updates : %s)\n" % (dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S'), no_g, updates), 'utf-8'))
-        #                     else:
-        #                         logs.append(bytes("%s: INFO No Update for No_G = %s with file %s\n" % (dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S'), no_g, row['source']), 'utf-8'))
-        #                 else:
-        #                     logs.append(bytes("%s: WARNING recored with No_G = %s not found! (source file %s)\n" % (dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S'), no_g, row['source']), 'utf-8'))
-        #                     # if row['source'] not in failure_import:
-        #                     #     failure_import[row['source']] = []
-        #                     # failure_import[row['source']].append({'no_g' : no_g, 'reason' : 'Record not found'})
+                            # If so, update the contact, do nothing otherwise
+                            if change:
+                                record.write(contact)
+                                message_body = ""
+                                for key in updates:
+                                    message_body += "%s: %s → %s<br/>" % (key, updates[key]['old'], updates[key]['new'])
+                                record.message_post(body=message_body)
+                                logs.append(bytes("%s: INFO Customer N° %s Credit Infos successfully updated (updates : %s)\n" % (dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S'), no_g, updates), 'utf-8'))
+                            else:
+                                logs.append(bytes("%s: INFO No Update for No_G = %s with file %s\n" % (dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S'), no_g, row['source']), 'utf-8'))
+                        else:
+                            logs.append(bytes("%s: WARNING recored with No_G = %s not found! (source file %s)\n" % (dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S'), no_g, row['source']), 'utf-8'))
+                            # if row['source'] not in failure_import:
+                            #     failure_import[row['source']] = []
+                            # failure_import[row['source']].append({'no_g' : no_g, 'reason' : 'Record not found'})
 
-        #                 if row['source'] not in success_import:
-        #                     success_import.append(row['source'])
+                        if row['source'] not in success_import:
+                            success_import.append(row['source'])
 
-        #         for filename in success_import:
-        #             if filename not in failure_import:
-        #                 session.rename(data_source_folder + "/" + filename, processed_data_folder + "/" + filename)
-        #                 logs.append(bytes("%s: INFO %s successfully moved to %s\n" % (dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S'), filename, processed_data_folder), 'utf-8'))
+                for filename in success_import:
+                    if filename not in failure_import:
+                        session.rename(data_source_folder + "/" + filename, processed_data_folder + "/" + filename)
+                        logs.append(bytes("%s: INFO %s successfully moved to %s\n" % (dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S'), filename, processed_data_folder), 'utf-8'))
 
-        #         log = b''.join(logs)
-        #         session.cwd(logfile_location)
-        #         session.storbinary('STOR credit_infos_import%s.log' % dt.strftime(dt.now(), '%Y%m%d%H%M%S'), BytesIO(log))
-        #         # log_byte.close()
-        #     session.quit()
+                log = b''.join(logs)
+                session.cwd(logfile_location)
+                session.storbinary('STOR credit_infos_import%s.log' % dt.strftime(dt.now(), '%Y%m%d%H%M%S'), BytesIO(log))
+                # log_byte.close()
+            session.quit()
 
-        # else:
-        #     raise UserError('Unable to connect to the ftp server')
+        else:
+            raise UserError('Unable to connect to the ftp server')
 
 class ResUsers(models.Model):
     _inherit = "res.users"

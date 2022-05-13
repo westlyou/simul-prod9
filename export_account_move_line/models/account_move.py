@@ -32,7 +32,9 @@ class AccountMoveLine(models.Model):
         # ---------------------------------------------------------------------------------------------
         #                                       Get data from query                                   #
         # ---------------------------------------------------------------------------------------------
-        invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', dt.strptime('2022-04-01', '%Y-%m-%d'))]).ids
+        # invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', dt.strptime('2022-04-01', '%Y-%m-%d'))]).ids
+        # invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', dt.strptime('2022-05-01', '%Y-%m-%d')), ('invoice_date', '<=', dt.strptime('2022-05-08', '%Y-%m-%d'))]).ids
+        invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', dt.strptime('2022-05-01', '%Y-%m-%d'))]).ids
         # move_lines = self.env['account.move.line'].search(['&', ('exported', '=', False), ('move_id', 'in', invoices_id)])
         move_lines = self.env['account.move.line'].search([('move_id', 'in', invoices_id)])
 
@@ -149,6 +151,9 @@ class AccountMoveLine(models.Model):
 
                         refs = [item for item in line.move_id.ref.replace(',', ' ').split() if re.search("\d", item) and len(item) == len(re.findall("[0-9]", item)) in (6,7) or re.findall('^AV_', item)]
                         refs = [item for item in refs if re.findall('^500', item) or re.findall('^AV_', item)]
+
+                        if not refs:
+                            refs = [item for item in line.move_id.ref.replace(',', ' ').split() if len(re.findall("\d", item)) == len(item)]
 
                         ref = refs[0] if len(refs) else None
 
