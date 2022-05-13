@@ -1,0 +1,246 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* library_pyecharts
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-13 08:56+0000\n"
+"PO-Revision-Date: 2022-05-13 08:56+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard__is_active
+msgid "Active"
+msgstr "Actif"
+
+#. module: library_pyecharts
+#. openerp-web
+#: code:addons/library_pyecharts/static/src/xml/load_pyecharts.xml:0
+#, python-format
+msgid "CPU Traffic"
+msgstr "Trafic du processeur"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard__column
+msgid "Column"
+msgstr "Colonne"
+
+#. module: library_pyecharts
+#: model_terms:ir.actions.act_window,help:library_pyecharts.action_dashboard_config
+msgid "Create Dashboard"
+msgstr "Créer un tableau de bord"
+
+#. module: library_pyecharts
+#: model_terms:ir.actions.act_window,help:library_pyecharts.action_echarts_type
+msgid "Create Echarts Type"
+msgstr "Créer un type d'écharts"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard__create_uid
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard_line__create_uid
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_type__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard__create_date
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard_line__create_date
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_type__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: library_pyecharts
+#: model:ir.model.fields.selection,name:library_pyecharts.selection__echarts_dashboard__theme__dark
+msgid "Dark"
+msgstr "Sombre"
+
+#. module: library_pyecharts
+#: model:ir.actions.client,name:library_pyecharts.action_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard_line__parent_id
+#: model:ir.ui.menu,name:library_pyecharts.menu_pyecharts
+#: model_terms:ir.ui.view,arch_db:library_pyecharts.view_dashboard_tree
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#. module: library_pyecharts
+#: model:ir.actions.act_window,name:library_pyecharts.action_dashboard_config
+#: model:ir.ui.menu,name:library_pyecharts.menu_dashboard
+#: model:ir.ui.menu,name:library_pyecharts.menu_dashboard_config
+msgid "Dashboard Config"
+msgstr "Configuration du tableau de bord"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard__line_ids
+#: model_terms:ir.ui.view,arch_db:library_pyecharts.view_dashboard_form
+msgid "Dashboard Detail"
+msgstr "Détail du tableau de bord"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard__display_name
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard_line__display_name
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_type__display_name
+msgid "Display Name"
+msgstr "Nom Affiché"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_type__is_subtitle
+msgid "Display SubTitle"
+msgstr "Afficher les sous-titres"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_type__is_title
+msgid "Display TitleOpts"
+msgstr "Afficher TitleOpts"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_type__is_toolbox
+msgid "Display ToolboxOpts"
+msgstr "Display ToolboxOpts"
+
+#. module: library_pyecharts
+#: model:ir.ui.menu,name:library_pyecharts.menu_echarts
+msgid "Echarts"
+msgstr "Cartes éléctroniques"
+
+#. module: library_pyecharts
+#: model:ir.ui.menu,name:library_pyecharts.menu_echarts_config
+msgid "Echarts Config"
+msgstr "Configuration des graphiques"
+
+#. module: library_pyecharts
+#: model:ir.model,name:library_pyecharts.model_echarts_dashboard
+msgid "Echarts Dashboard"
+msgstr "Tableau de bord écharts"
+
+#. module: library_pyecharts
+#: model:ir.model,name:library_pyecharts.model_echarts_dashboard_line
+msgid "Echarts Dashboard Detail"
+msgstr "Détail du tableau de bord écharts"
+
+#. module: library_pyecharts
+#: model:ir.actions.act_window,name:library_pyecharts.action_echarts_type
+#: model:ir.model,name:library_pyecharts.model_echarts_type
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard_line__echart
+#: model:ir.ui.menu,name:library_pyecharts.menu_echarts_type
+#: model_terms:ir.ui.view,arch_db:library_pyecharts.view_dashboard_form
+#: model_terms:ir.ui.view,arch_db:library_pyecharts.view_echarts_type_form
+#: model_terms:ir.ui.view,arch_db:library_pyecharts.view_echarts_type_tree
+msgid "Echarts Type"
+msgstr "Type de cartes éléctroniques"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard__height
+msgid "Element Height（px）"
+msgstr "Hauteur de l'élément (px)"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_type__etype
+msgid "Etype"
+msgstr ""
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard__id
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard_line__id
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_type__id
+msgid "ID"
+msgstr ""
+
+#. module: library_pyecharts
+#: model:ir.model.fields.selection,name:library_pyecharts.selection__echarts_dashboard__theme__infographic
+msgid "Infographic"
+msgstr "Infographie"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard____last_update
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard_line____last_update
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_type____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard__write_uid
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard_line__write_uid
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_type__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard__write_date
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard_line__write_date
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_type__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: library_pyecharts
+#. openerp-web
+#: code:addons/library_pyecharts/static/src/xml/load_pyecharts.xml:0
+#, python-format
+msgid "Likes"
+msgstr ""
+
+#. module: library_pyecharts
+#: model:ir.model.fields.selection,name:library_pyecharts.selection__echarts_dashboard__theme__macarons
+msgid "Macarons"
+msgstr ""
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard__name
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_type__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: library_pyecharts
+#. openerp-web
+#: code:addons/library_pyecharts/static/src/xml/load_pyecharts.xml:0
+#, python-format
+msgid "New Members"
+msgstr "Nouveaux membres"
+
+#. module: library_pyecharts
+#: model:ir.model.fields.selection,name:library_pyecharts.selection__echarts_dashboard__theme__roma
+msgid "Roma"
+msgstr ""
+
+#. module: library_pyecharts
+#. openerp-web
+#: code:addons/library_pyecharts/static/src/xml/load_pyecharts.xml:0
+#, python-format
+msgid "Sales"
+msgstr "Ventes"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard_line__sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: library_pyecharts
+#: model:ir.model.fields.selection,name:library_pyecharts.selection__echarts_dashboard__theme__shine
+msgid "Shine"
+msgstr "Briller"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_type__subtitle
+msgid "SubTitle"
+msgstr "Sous-titre"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_dashboard__theme
+msgid "Theme"
+msgstr "Thème"
+
+#. module: library_pyecharts
+#: model:ir.model.fields,field_description:library_pyecharts.field_echarts_type__title
+msgid "TitleOpts"
+msgstr ""
+
+#. module: library_pyecharts
+#: model:ir.model.fields.selection,name:library_pyecharts.selection__echarts_dashboard__theme__vintage
+msgid "Vintage"
+msgstr ""
