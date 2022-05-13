@@ -91,7 +91,7 @@ class AccountMoveLine(models.Model):
                 if line.balance != 0 and not line.account_id.code[:3] == '401':
 
                     no_doc = line.move_id.name
-                    no_doc_elts = no_doc.split()
+                    no_doc_elts = no_doc.split('/')
                     if len(no_doc_elts)>1:
                         if re.search('^20', no_doc_elts[1]):
                             no_doc.replace(no_doc_elts, no_doc_elts[2:])
