@@ -92,10 +92,16 @@ class AccountMoveLine(models.Model):
 
                     no_doc = line.move_id.name
                     no_doc_elts = no_doc.split('/')
-                    raise UserError(str(no_doc_elts))
+
                     if len(no_doc_elts)>1:
-                        if re.search('^20', no_doc_elts[1]):
-                            no_doc.replace(no_doc_elts[1], no_doc_elts[1][2:])
+                        new_doc_elts = []
+                        for item in no_doc_elts:
+                            if re.search('^20', item):
+                                new_doc_elts.append(item[2:])
+                            else:
+                                new_doc_elts.append(item)
+
+                        no_doc = "/".join(new_doc_elts)
 
                     origin_order = line.move_id.origin_order()
                     if no_doc not in line_count:
