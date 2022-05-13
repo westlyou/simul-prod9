@@ -33,8 +33,8 @@ class AccountMoveLine(models.Model):
         #                                       Get data from query                                   #
         # ---------------------------------------------------------------------------------------------
         # invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', dt.strptime('2022-04-01', '%Y-%m-%d'))]).ids
-        # invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', dt.strptime('2022-05-01', '%Y-%m-%d')), ('invoice_date', '<=', dt.strptime('2022-05-08', '%Y-%m-%d'))]).ids
-        invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', dt.strptime('2022-05-01', '%Y-%m-%d'))]).ids
+        invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', dt.strptime('2022-05-01', '%Y-%m-%d')), ('invoice_date', '<=', dt.strptime('2022-05-08', '%Y-%m-%d'))]).ids
+        # invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', dt.strptime('2022-05-01', '%Y-%m-%d'))]).ids
         # move_lines = self.env['account.move.line'].search(['&', ('exported', '=', False), ('move_id', 'in', invoices_id)])
         move_lines = self.env['account.move.line'].search([('move_id', 'in', invoices_id)])
 
@@ -89,11 +89,18 @@ class AccountMoveLine(models.Model):
             for line in move_lines:
                 # if not (line.product_id and line.product_id.category == 'voucher'):
                 if line.balance != 0 and not line.account_id.code[:3] == '401':
+
+                    no_doc = line.move_id.name
+                    no_doc_elts = no_doc.split()
+                    if len(no_doc_elts)  1:
+                        if re.search('^20', no_doc_elts[1]):
+                            no_doc.replace(no_doc_elts, no_doc_elts[2:])
+                            
                     origin_order = line.move_id.origin_order()
-                    if line.move_id.name not in line_count:
-                        line_count[line.move_id.name] = 1
+                    if no_doc not in line_count:
+                        line_count[no_doc] = 1
                     else:
-                        line_count[line.move_id.name] += 1
+                        line_count[no_doc] += 1
 
                     if line.move_id.move_type == 'in_invoice':
                         designation = 'ACH %s %s' % (line.partner_id.no_g or "", (line.ticket_number or "") if line.move_id.origin_type == 'amadeus' else (line.supplier_invoice_ref or ""))
@@ -131,7 +138,7 @@ class AccountMoveLine(models.Model):
                         ref = refs[0] if len(refs) else None
                         external_doc = ('%s annulee' % ref) if ref else ""
                         if not external_doc:
-                            raise UserError("Doc: %s, line: %s, move_id.ref: %s, first_refs: %s, second_refs: %s" % (line.move_id.name, line.account_id.code, line.move_id.ref, first_refs, second_refs))
+                            raise UserError("Doc: %s, line: %s, move_id.ref: %s, first_refs: %s, second_refs: %s" % (no_doc, line.account_id.code, line.move_id.ref, first_refs, second_refs))
 
 
                     elif line.move_id.move_type == 'in_refund':
@@ -171,32 +178,32 @@ class AccountMoveLine(models.Model):
                     # 345 line counter
                     if current_doc:
                         if line.account_id.code[:3] == '345' and line.move_id.move_type in ('in_invoice', 'in_refund'):
-                            if line.move_id.name == current_doc:
+                            if no_doc == current_doc:
                                 _345_line_counter += 1
                             else:
                                 _345_line_counter = 1
-                                current_doc = line.move_id.name
+                                current_doc = no_doc
                     else:
                         _345_line_counter = 1
-                        current_doc = line.move_id.name
+                        current_doc = no_doc
 
                     # For General Account
                     data['No ecriture'].append(0)
                     # data['No ecriture TIERS'].append(line.move_id.name)
-                    data['No ecriture TIERS'].append(line.move_id.name if line.move_id.move_type not in ('in_invoice', 'in_refund') else "%s-%s" % (line.move_id.name, _345_line_counter))
-                    data['No ligne TIERS'].append(line_count[line.move_id.name])
+                    data['No ecriture TIERS'].append(no_doc if line.move_id.move_type not in ('in_invoice', 'in_refund') else "%s-%s" % (no_doc, _345_line_counter))
+                    data['No ligne TIERS'].append(line_count[no_doc])
                     data['No societe THIRDPARTY'].append("SIGM")
                     data['1ere ligne document'].append("")
                     data["Nombre d'erreurs document"].append("")
                     data['Nom modele feuille'].append("")
-                    data['No ligne'].append(line_count[line.move_id.name] * 10000)
+                    data['No ligne'].append(line_count[no_doc] * 10000)
                     data['Type de compte'].append('Client' if line.account_id.code[:3] == '411' else 'General')
                     data['No compte'].append(line.partner_id.no_g if line.account_id.code[:3] == '411' else line.account_id.code)
                     data['Date comptabilisation'].append(dt.strftime(line.date, "%d/%m/%Y"))
                     data['Type document'].append('Facture' if line.move_id.move_type in ('in_invoice', 'out_invoice') else 'Avoir' if line.move_id.move_type in ('in_refund', 'out_refund') else '')
                     # data['Type document'].append('')
                     # data['No Document'].append(line.move_id.name)
-                    data['No Document'].append(line.move_id.name if line.move_id.move_type not in ('in_invoice', 'in_refund') else "%s-%s" % (line.move_id.name, _345_line_counter))
+                    data['No Document'].append(no_doc if line.move_id.move_type not in ('in_invoice', 'in_refund') else "%s-%s" % (no_doc, _345_line_counter))
                     # data['Designation'].append(line.name)
                     data['Designation'].append(designation)
                     data['%TVA'].append(line.tax_ids.amount)
@@ -242,19 +249,19 @@ class AccountMoveLine(models.Model):
 
                     if line.account_id.code[:3] == '345' and line.move_id.move_type in ('in_invoice', 'in_refund'):
                         data['No ecriture'].append(0)
-                        data['No ecriture TIERS'].append("%s-%s" % (line.move_id.name, _345_line_counter))
-                        line_count[line.move_id.name] += 1
-                        data['No ligne TIERS'].append(line_count[line.move_id.name])
+                        data['No ecriture TIERS'].append("%s-%s" % (no_doc, _345_line_counter))
+                        line_count[no_doc] += 1
+                        data['No ligne TIERS'].append(line_count[no_doc])
                         data['No societe THIRDPARTY'].append("SIGM")
                         data['1ere ligne document'].append("")
                         data["Nombre d'erreurs document"].append("")
                         data['Nom modele feuille'].append("")
-                        data['No ligne'].append(line_count[line.move_id.name] * 10000)
+                        data['No ligne'].append(line_count[no_doc] * 10000)
                         data['Type de compte'].append('Fournisseur' if line.move_id.move_type in ('in_invoice', 'in_refund') else "")
                         data['No compte'].append(line.partner_id.no_g)
                         data['Date comptabilisation'].append(dt.strftime(line.date, "%d/%m/%Y"))
                         data['Type document'].append('Facture' if line.move_id.move_type == 'in_invoice' else 'Avoir' if line.move_id.move_type == 'in_refund' else '')
-                        data['No Document'].append("%s-%s" % (line.move_id.name, _345_line_counter))
+                        data['No Document'].append("%s-%s" % (no_doc, _345_line_counter))
                         # data['Designation'].append(line.name)
                         data['Designation'].append(designation)
                         data['%TVA'].append(line.tax_ids.amount)
