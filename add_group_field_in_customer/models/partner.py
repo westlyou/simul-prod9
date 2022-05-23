@@ -12,7 +12,8 @@ class ResPartner(models.Model):
 
     in_group = fields.Boolean(string="Group", compute="_compute_group")
 
-    @api.depends('c_posting_group')
+    @api.depends('c_gen_bus_pg')
     def _compute_group(self):
         for record in self:
-            record.in_group = record.c_posting_group == 'C10'
+            # record.in_group = record.c_posting_group == 'C10'
+            record.in_group = record.c_gen_bus_pg == 'C10'

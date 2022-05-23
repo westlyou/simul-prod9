@@ -6,10 +6,10 @@
         "password": "gAAAAABiHKJBNsdu-A923f2w_EdseOZy8MVBBElj7k00L9ROi1w76OC9c6REr932lmGzpfNpR4egLRIXrJ-JGKPq25CT911XjuwyhUTm9Nb9FqG7e79xzdo="
     },
     "data": {
-        "source": "/files/TEST/In",
-        "processed": "/files/TEST/In/processed"
+        "source": "/files/PROD/In",
+        "processed": "/files/PROD/In/processed"
     },
     "logfile" : {
-        "location" : "/files/TEST/In/log"
+        "location" : "/files/PROD/In/log"
     }
 }

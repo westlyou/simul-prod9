@@ -16,6 +16,8 @@ from io import StringIO
 from io import BytesIO
 
 from datetime import datetime as dt
+from datetime import date
+from datetime import timedelta
 import re
 
 class AccountMoveLine(models.Model):
@@ -33,8 +35,9 @@ class AccountMoveLine(models.Model):
         #                                       Get data from query                                   #
         # ---------------------------------------------------------------------------------------------
         # invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', dt.strptime('2022-04-01', '%Y-%m-%d'))]).ids
-        invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', dt.strptime('2022-05-01', '%Y-%m-%d')), ('invoice_date', '<=', dt.strptime('2022-05-08', '%Y-%m-%d'))]).ids
-        # invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', dt.strptime('2022-05-01', '%Y-%m-%d'))]).ids
+        # invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', dt.strptime('2022-05-01', '%Y-%m-%d')), ('invoice_date', '<=', dt.strptime('2022-05-16', '%Y-%m-%d'))]).ids
+        invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', date.today())]).ids
+        # invoices_id = self.env['account.move'].search(['&', ('state', '=', 'posted'), ('move_type', 'in', ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')), ('invoice_date', '>=', date.today() - timedelta(days=1))]).ids
         # move_lines = self.env['account.move.line'].search(['&', ('exported', '=', False), ('move_id', 'in', invoices_id)])
         move_lines = self.env['account.move.line'].search([('move_id', 'in', invoices_id)])
 
@@ -304,10 +307,13 @@ class AccountMoveLine(models.Model):
             # ----------------------------------------------
 
             buffer = StringIO()
-            df.to_csv(buffer, sep=';', index=False, header=False, line_terminator="\n")
+            bcp_buffer = StringIO()
+            df.to_csv(buffer, sep=';', index=False, header=False, line_terminator="\r\n")
+            df.to_csv(bcp_buffer, sep=';', index=False, header=False, line_terminator="\n")
             text = buffer.getvalue()
+            bcp_text = bcp_buffer.getvalue()
             bio = BytesIO(str.encode(text))
-            bcp_bio = BytesIO(str.encode(text))
+            bcp_bio = BytesIO(str.encode(bcp_text))
 
             # ---------------------------------------------------------------------------------------------
             #                      Send the generated CSV file into the FTP server                        #
@@ -333,14 +339,14 @@ class AccountMoveLine(models.Model):
             session.cwd(_CONFIG_['csvfiles']['dest'])
 
             # Sending the file
+            exported_filename = 'COMPTA_POUR_INCADEA_%s.txt' % dt.strftime(dt.now(), '%Y%m%d%H%M%S')
             try:
-                exported_filename = 'COMPTA_POUR_INCADEA_%s.txt' % dt.strftime(dt.now(), '%Y%m%d%H%M%S')
-            #     session.storbinary('STOR %s' % exported_filename, bio)
-            #     move_lines.write({'exported' : True})
+                session.storbinary('STOR %s' % exported_filename, bio)
+                move_lines.write({'exported' : True})
             except Exception as e:
                 print("{} Erreur : Cannot upload the file to the SFTP server.\n{}".format(dt.now(), e))
 
-            # session.quit()
+            session.quit()
 
             # Backup
             _BCP_CONFIG_ = None
@@ -355,6 +361,9 @@ class AccountMoveLine(models.Model):
             bcp_session = ftplib.FTP(_BCP_CONFIG_['ftp']['host'], _BCP_CONFIG_['ftp']['username'], _BCP_CONFIG_['ftp']['password'], timeout=100000)
 
             bcp_session.cwd(_BCP_CONFIG_['csvfiles']['dest'])
-            bcp_session.storbinary('STOR %s' % exported_filename, bcp_bio)
+            try:
+                bcp_session.storbinary('STOR %s' % exported_filename, bcp_bio)
+            except Exception as e:
+                print("{} Erreur : Cannot upload the file to the SFTP server.\n{}".format(dt.now(), e))
 
             bcp_session.quit()

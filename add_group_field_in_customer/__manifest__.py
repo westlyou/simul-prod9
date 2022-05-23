@@ -18,7 +18,7 @@
     'category': '',
     'website': 'https://www.odoo.com/page/billing',
     'images' : [],
-    'depends' : ['base', 'add_posting_group_in_res_partner'],
+    'depends' : ['base', 'add_gen_bus_pg_res_partner'],
     'data': [
         "views/partner.xml",
     ],

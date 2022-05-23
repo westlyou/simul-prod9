@@ -6,6 +6,6 @@
         "password": "gAAAAABgUkgZNDb46UTDurQicX4GkuILoKJiPB368l2n1T-myhzACHthnJnDyU2OiNN19jGsBzZ6MusU1iKsgLIEuEryW1I3Nw=="
     },
     "csvfiles": {
-        "dest": "sigm/files/TEST/Out"
+        "dest": "sigm/files/PROD/Out"
     }
 }
